@@ -54,20 +54,33 @@
     \ifx\inserttitle\@empty\else\usebeamertemplate*{title}\fi
     \ifx\insertsubtitle\@empty\else\usebeamertemplate*{subtitle}\fi
     \usebeamertemplate*{title separator}
+    \vspace{-5mm}
     \ifx\beamer@shortauthor\@empty\else\usebeamertemplate*{author}\fi
     \ifx\insertdate\@empty\else\usebeamertemplate*{date}\fi
     \ifx\insertinstitute\@empty\else\usebeamertemplate*{institute}\fi
+    \vspace{7mm}
   \end{minipage}
-  \vspace{3mm}
+  \begin{minipage}[c]{\textwidth}
+    {\tiny
+      \begin{tabular}{ l l l }
+        Advisors: & Vadim Okun & NIST, SAMATE project and team leader \\
+        & Aurelien Delaitre & NIST, SATE project leader \\
+        & Muriel Duval & TELECOM Nancy, academic reviewer
+      \end{tabular}
+    }
+  \end{minipage}
   \begin{figure}
    \begin{minipage}[c]{.31\linewidth}
-      \includegraphics[scale=0.15]{figures/nist-logo}
+      \center
+      \includegraphics[scale=0.12]{figures/nist-logo}
    \end{minipage} \hfill
    \begin{minipage}[c]{.31\linewidth}
-      \includegraphics[scale=0.16]{figures/school-logo}
+      \center
+      \includegraphics[scale=0.13]{figures/school-logo}
    \end{minipage} \hfill
-   \begin{minipage}[c]{.31\linewidth}
-      \includegraphics[scale=0.68]{figures/university-logo}
+   \begin{minipage}[c]{.35\linewidth}
+      \center
+      \includegraphics[scale=0.57]{figures/university-logo}
    \end{minipage}
   \end{figure}
 }
