@@ -1,22 +1,90 @@
+%%%%%%%%%%%%%%%%%%%%
+%%%%% PREAMBLE %%%%%
+%%%%%%%%%%%%%%%%%%%%
+
+% Use the beamer class
 \documentclass{beamer}
+
+% Use the metropolis theme and configure it
 \usetheme
     [
       titleformat = smallcaps,
       numbering = fraction,
-      progressbar = foot
+      progressbar = foot,
+      block = fill
     ]
     {metropolis}
+
+% Presentation main information
 \title{Static Analysis Tool Exposition (SATE) ~~~~~~~~~~ Test Case Development}
 \date{\today}
 \author{Damien Cupif}
 \institute{Oral Defense for TELECOM Nancy Master's Degree}
-\begin{document}
-  \maketitle
-  \section{First Section}
-  \begin{frame}{First Frame}
-    Hello, world!
+
+% Include the table of contents at the beggining of each section
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
   \end{frame}
-  \section{Conclusion}
-  \section{Acknowledgments}
-  \section{References}
-\end{document}
+}
+
+%%%%%%%%%%%%%%%%%%%%
+%%%%% DOCUMENT %%%%%
+%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+  % Title frame
+  \maketitle
+
+  % Display fully the table of contents once
+  \begin{frame}{Table of Contents}
+    \tableofcontents
+  \end{frame}
+
+  % Beginning of section
+  \section{About NIST}
+    \begin{frame}
+      
+    \end{frame}
+  % End of section
+
+  % Beginning of section
+  \section{First Section}
+    \begin{frame}
+      \frametitle{Sample frame title}
+
+      In this slide, some important text will be
+      \alert{highlighted} beause it's important.
+      Please, don't abuse it.
+
+      \begin{block}{Remark}
+      Sample text
+      \end{block}
+
+      \begin{alertblock}{Important theorem}
+      Sample text in red box
+      \end{alertblock}
+
+      \begin{examples}
+      Sample text in green box. "Examples" is fixed as block title.
+      \end{examples}
+    \end{frame}
+
+    \begin{frame}{First Frame}
+      Hello, world!
+    \end{frame}
+  % End of section
+
+  \begin{frame}{Conclusion}
+  \end{frame}
+    
+  \begin{frame}{Acknowledgments}
+  \end{frame}
+
+  \begin{frame}{References}
+  \end{frame}
+
+  \end{document}
