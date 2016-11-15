@@ -58,10 +58,10 @@
     \ifx\beamer@shortauthor\@empty\else\usebeamertemplate*{author}\fi
     \ifx\insertdate\@empty\else\usebeamertemplate*{date}\fi
     \ifx\insertinstitute\@empty\else\usebeamertemplate*{institute}\fi
-    \vspace{7mm}
+    \vspace{5mm}
   \end{minipage}
   \begin{minipage}[c]{\textwidth}
-    {\tiny
+    {\scriptsize
       \begin{tabular}{ l l l }
         \textbf{Advisors} & Vadim Okun & NIST, SAMATE project and team leader \\
         & Aurelien Delaitre & NIST, SATE project leader \\
@@ -69,18 +69,19 @@
       \end{tabular}
     }
   \end{minipage}
+  \vspace{-2mm}
   \begin{figure}
    \begin{minipage}[c]{.31\linewidth}
       \center
-      \includegraphics[scale=0.12]{figures/nist-logo}
+      \includegraphics[scale=0.14]{figures/nist-logo}
    \end{minipage} \hfill
    \begin{minipage}[c]{.31\linewidth}
       \center
-      \includegraphics[scale=0.13]{figures/school-logo}
+      \includegraphics[scale=0.15]{figures/school-logo}
    \end{minipage} \hfill
    \begin{minipage}[c]{.35\linewidth}
       \center
-      \includegraphics[scale=0.57]{figures/university-logo}
+      \includegraphics[scale=0.67]{figures/university-logo}
    \end{minipage}
   \end{figure}
 }
@@ -149,11 +150,13 @@
 }
 \defbeamertemplate{section page}{progressbar}{
   \centering
-  \begin{minipage}{22em}
+  \begin{minipage}{32em}
     \raggedright
-    \usebeamercolor[fg]{section title}
-    \usebeamerfont{section title}
-    \insertsectionhead\\[-1ex]
+    \begin{center}
+      \usebeamercolor[fg]{section title}
+      \usebeamerfont{section title}
+      \insertsectionhead\\[-1ex]
+    \end{center}  
     \usebeamertemplate*{progress bar in section page}
     \par
     \ifx\insertsubsectionhead\@empty\else%
