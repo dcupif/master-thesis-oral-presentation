@@ -22,6 +22,10 @@
 \usepackage[font={scriptsize,it}, labelfont={scriptsize,it}, justification=centering]{caption}
 \usepackage{booktabs}
 \usepackage{ragged2e}
+\usepackage{pifont}
+
+\definecolor{custom-red}{RGB}{225,99,92}
+\definecolor{custom-green}{RGB}{119,193,108}
 
 % Presentation main information
 \title{Static Analysis Tool Exposition (SATE)\\Test Case Development}
@@ -198,8 +202,6 @@
     {\LARGE $\to$ We MUST build \alert{better software} in the first place!}
   \end{frame}
 
-  \subsection{What is Static Analysis?}
-
   \begin{frame}[standout]
     \begin{changemargin}{-2cm}{-2cm}
     \vspace{-0.2cm}
@@ -209,6 +211,8 @@
     \end{figure}
     \end{changemargin}
   \end{frame}
+
+  \subsection{What is Static Analysis?}
 
   \begin{frame}{What is Static Analysis?}
     \begin{quote}
@@ -297,41 +301,280 @@
       \setlength\itemsep{0.5em}
       \item \textbf{Ground Truth} $\rightarrow$ We know where the bugs are
       \item \textbf{Realism} $\rightarrow$ As close as possible to industrial software
-      \item \textbf{Statistical Significance} $\rightarrow$ We want a lot of bugs
+      \item \textbf{Statistical Significance} $\rightarrow$ We want a lot of bugs, hundreds of them!
       \end{itemize}
     \pause
-    \item A \textbf{large spectrum of vulnerability types} should be represented chosen from the CWE/SANS Top 25 and the OWASP Top 10
+    \item A \textbf{large spectrum of vulnerability types}
     \end{itemize}
   \end{frame}
 
   \begin{frame}{Project Challenges}
-    \begin{enumerate}
-    \item No such test case exist in the nature
-    \item Developing test cases from scratch is not an option to achieve realism
-    \end{enumerate}
+    \begin{block}{Challenge n$^{\circ}$1:}
+      No such test case exist in the nature
+    \end{block}
+    \pause
+    \begin{block}{Challenge n$^{\circ}$2:}
+      Developing test cases from scratch is not an option
+    \end{block}
+    \pause
+    \vspace{1.5em}
+    \centering
+    \begin{LARGE}
+      What about modifying existing source code then?\\ And \alert{insert vulnerabilities} in it?!
+    \end{LARGE}
+  \end{frame}
+
+  \begin{frame}{Project Challenges}
+    Injecting vulnerabilities into existing source code \ldots{} is that hard?\\
+    \pause
+    \begin{itemize}
+    \setlength\itemsep{0.4em}
+    \item Getting to know an existing project is \textbf{insanely time consuming}
+    \pause
+    \item How would we \textbf{identify vulnerable source code locations} where to inject bugs?
+    \pause
+    \item Realism VS. Modifying the program's behavior
+    \pause
+    \item Different vulnerability types, different processes?
+    \pause
+    \item Ability to \textbf{trigger the bugs}?
+    \end{itemize}
+    \pause
+    \vspace{0.5em}
+    $\rightarrow$ Challenging task and really {\LARGE\alert{time consuming}} task when done manually
   \end{frame}
   
-  \subsection{Opportunities with Vulnerability Injection Techniques}
-  \subsection{Action Plan for Success}
+  \subsection{Opportunities with Automated Vulnerability Injection Techniques}
+
+  \begin{frame}{Automated Vulnerability Injection Techniques}
+    Some automated vulnerability injection techniques are starting to emerge:
+    \begin{itemize}
+    \item Automating a \textbf{code mutation} process
+    \item Injecting small snippets of flawed code (STONESOUP)
+    \item Analyzing the control flow and data flow (LAVA)
+    \end{itemize}
+    \pause
+    Some of those techniques are \alert{powerful}, but they all lack one thing \ldots{}
+    \pause
+    \begin{center}
+      \begin{large}
+        \textbf{The crafted bugs are not realistic enough yet}
+      \end{large}
+    \end{center}
+  \end{frame} 
+
+  \begin{frame}{About Combining Both Worlds}
+    \centering
+    \begin{table}
+    \begin{tabular}{lcc}
+      \toprule
+      & Manual Injection & Automated Injection \\
+      \midrule
+      Programming Languages & \textcolor{custom-green}{\ding{51}} & \textcolor{custom-red}{\ding{55}} \\
+      \midrule
+      Ground Truth & \textcolor{custom-green}{\ding{51}} & \textcolor{custom-green}{\ding{51}} \\
+      \midrule
+      Realism & \textcolor{custom-green}{\ding{51}} & \textcolor{custom-red}{\ding{55}} \\
+      \midrule
+      Statistical Significance & \textcolor{custom-red}{\ding{55}} & \textcolor{custom-green}{\ding{51}} \\
+      \midrule
+      Vulnerability Spectrum & \textcolor{custom-green}{\ding{51}} & \textcolor{custom-red}{\ding{55}} \\
+      \bottomrule
+    \end{tabular}
+    \caption{Manual Vulnerability Injection VS. Automated Vulnerability Injection}
+    \end{table}
+    \pause
+    \textbf{Automating part of the process would get us the best of both worlds.}
+  \end{frame}
+  
+  \subsection{Project Planification}
+  \begin{frame}{My Action Plan}
+    \begin{enumerate}
+      \setlength\itemsep{1em}
+      \item Vulnerability addition \textbf{state of the art}
+      \pause
+      \item \textbf{Get familiar} with the chosen technique
+      \pause
+      \item \textbf{Use it} on potential future test cases
+      \pause
+      \item Fasten the process of \textbf{manual vulnerability addition}
+      \pause
+      \item \textbf{Design a process} to produce test suites for SATE VI
+    \end{enumerate}
+  \end{frame}
   % End of section
 
   % Beginning of section
   \section{A Focus on LAVA, a Large-scale and Automated Vulnerability Addition Software}
+
+  \begin{frame}{LAVA Software}
+    \begin{columns}
+      \begin{column}{0.25\textwidth}
+        \begin{figure}
+          \centering
+          \hspace{1em}
+          \includegraphics[scale=0.35]{figures/lava-logo}
+          \caption{LAVA Logo}
+        \end{figure}
+      \end{column}
+      \begin{column}{0.75\textwidth}
+        \begin{itemize}
+        \setlength\itemsep{1em}
+        \item \textbf{L}arge-scale \textbf{A}utomated \textbf{V}ulnerability \textbf{A}ddition \textbf{S}oftware
+        \item Developed by the MIT Lincoln Laboratory and the University of New York
+        \item \textbf{Motivation:} Generate \alert{large ground-truth vulnerability corpora} to enable rigorous tool evaluation
+        \item \textbf{How?} Inject vulnerabilities into existing C programs by analyzing the \alert{control flow} and \alert{data flow}
+        \end{itemize}
+      \end{column}
+    \end{columns}
+  \end{frame}
+  
   \subsection{LAVA Process Overview}
-  \subsection{Using LAVA: Pros and Cons}
-  \subsection{LAVA Reverse Engineering and Extension}
+
+  \begin{frame}{Desired Bugs Characteristics}
+    LAVA was implemented with the following requirements in mind. Bugs should:
+    \begin{itemize}
+    \setlength\itemsep{1em}
+    \item[\textcolor{custom-green}{\ding{51}}] Be \textbf{cheap} and \textbf{plentiful}
+    \item[\textcolor{custom-green}{\ding{51}}] Span the execution lifetime of a program
+    \item[\textcolor{custom-green}{\ding{51}}] Be embedded in representative control and data flow
+    \item[\textcolor{custom-green}{\ding{51}}] Come with an input that serves as a \textbf{proof of existence}
+    \item[\textcolor{custom-green}{\ding{51}}] Manifest for a very small fraction of possible inputs
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{DUAs and ATPs}
+    \vspace{0.5em}
+    \begin{definition}
+      \vspace{0.3em}
+      \textcolor{mLightGreen}{DUA} stands for \textbf{D}ead \textbf{U}ncomplicated and \textbf{A}vailable data.\\
+      \vspace{-0.2em}
+      \begin{description}[Uncomplicated]
+        \item[Dead] Qualifies data that does \alert{not influence the program's behavior}
+        \item[Uncomplicated] The data is \alert{not altered much} so we can easily control its value 
+        \item[Available] The data should be \alert{accessible} via program variables
+      \end{description}
+    \end{definition}
+    \pause
+    \begin{definition}
+      \vspace{0.3em}
+      \textcolor{mLightGreen}{ATP} stands for \textbf{AT}tack \textbf{P}oints.\\
+      \vspace{0.3em}
+      An ATP is a \textbf{site} in the source code, a location, where identifiable structure makes it a \alert{potential place to inject a bug}.
+    \end{definition}
+  \end{frame}
+
+  \begin{frame}{LAVA Bug Formula}
+    \begin{enumerate}
+    \item Find the DUAs and ATPs in the program
+    \item Make the DUAs available at the ATPs
+    \item Inject bugs by using DUAs with altered values at the ATPs
+    \end{enumerate}
+    \begin{figure}
+      \centering
+      \includegraphics[scale=0.3]{figures/lava-bug}
+      \caption{LAVA Bug Formula: DUAs + ATPs}
+    \end{figure}
+  \end{frame}
+
+  \begin{frame}{Why Should We Use LAVA?}
+    \begin{table}
+      \begin{tabular}{ll}
+        \toprule
+        \multicolumn{2}{c}{LAVA or not LAVA?}\\
+        \midrule
+        \multicolumn{1}{c}{\textcolor{custom-green}{Pros}} & \multicolumn{1}{c}{\textcolor{custom-red}{Cons}} \\
+        \midrule
+        \textcolor{custom-green}{\ding{51}} Inject a lot of bugs & \textcolor{custom-red}{\ding{55}} Works only for C Programs \\
+        \textcolor{custom-green}{\ding{51}} The most sophisticated so far & \textcolor{custom-red}{\ding{55}} Specific to buffer-overflows vulnerabilities \\
+        \textcolor{custom-green}{\ding{51}} Very fast method & \textcolor{custom-red}{\ding{55}} Bugs not realistic enough \\
+        \textcolor{custom-green}{\ding{51}} Hope to extend it & \textcolor{custom-red}{\ding{55}} Proof of concept more than a real product \\
+        \textcolor{custom-green}{\ding{51}} Access to the DUAs and ATPs & \\
+        \bottomrule
+      \end{tabular}
+      \caption{Reasons To or Not To Use LAVA}
+    \end{table}
+  \end{frame}
+  
+  \subsection{Using LAVA on Real Code}
+
+  \begin{frame}{Running LAVA}
+    Tried to run LAVA on two programs:
+    \begin{itemize}
+    \item \textit{File} $\rightarrow$ \textcolor{custom-green}{Successful}
+    \item \textit{Hping} $\rightarrow$ \textcolor{custom-red}{A real pain \ldots}
+    \end{itemize}
+    \pause
+    \vspace{0.5em}
+    \textbf{Poor documentation} \\
+    \vspace{0.3em}
+    LAVA expects the software to be \textbf{compliant with the GNU build system} \\
+    \vspace{0.3em}
+    The system architecture is \textbf{really complex}.
+  \end{frame}
+
+  \subsection{Extending LAVA}
+
+  \begin{frame}{Extending LAVA}
+    Some things I have done so far to improve LAVA:
+    \begin{itemize}
+    \setlength\itemsep{1em}
+    \item Improved the \textbf{LAVA configuration system}
+    \item Submitted changes to the LAVA team:
+      \begin{itemize}
+        \item Fixed \textbf{bugs}
+        \item Refactoring
+        \item Developed support for \textbf{function pointers}
+      \end{itemize}
+      All were \textcolor{custom-green}{accepted}!
+    \item Designed an SQL request to \alert{use the LAVA database information}
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Using DUAs and ATPs to manually inject vulnerabilities}
+    \begin{figure}
+      \centering
+      \includegraphics[scale=0.43]{figures/sql-output}
+      \caption{SQL Request Output on LAVA Database}
+    \end{figure}
+  \end{frame}
   % End of section
 
   % Beginning of section
   \section*{Conclusion}
+
+  \begin{frame}{Project Results}
+    \begin{enumerate}
+      \setlength\itemsep{1em}
+      \item[\textcolor{custom-green}{\ding{51}}] Vulnerability addition state of the art
+      \pause
+      \item[\textcolor{custom-green}{\ding{51}}] Get familiar with the chosen technique
+      \pause
+      \item[\textcolor{mLightBrown}{\ding{51}}] Use it on potential future test cases
+      \pause
+      \item[\textcolor{custom-green}{\ding{51}}] Fasten the process of manual vulnerability addition
+      \pause
+      \item[\textcolor{custom-red}{\ding{55}}] Design a process to produce test suites
+    \end{enumerate}
+  \end{frame}
+
+  \begin{frame}{Future Work}
+    On the short-term, for SATE VI:
+    \begin{itemize}
+    \item[\ding{43}] Run LAVA on other test cases
+    \item[\ding{43}] Insert bugs manually using LAVA
+    \item[\ding{43}] JAVA test suite (STONESOUP?)
+    \end{itemize}
+    \pause
+    On the long-term:
+    \begin{itemize}
+    \item[\ding{43}] Extend LAVA to find new ATPs
+    \item[\ding{43}] Or \ldots{} build our own product?
+    \end{itemize}
+  \end{frame}
+  
   % End of section
   
-  \begin{frame}{Acknowledgments}
-  \end{frame}
-
-  \begin{frame}{References}
-  \end{frame}
-
   \begin{frame}[standout]
     \begin{huge}
       Thank you for your attention!\\\alert{Questions?\\}
