@@ -29,7 +29,7 @@
 
 % Presentation main information
 \title{Static Analysis Tool Exposition (SATE)\\Test Case Development}
-\date{December 2\textsuperscript{nd}, 2017}
+\date{December 2\textsuperscript{nd}, 2016}
 \author{\textbf{Damien Cupif}}
 \institute{\textbf{\textit{Oral Defense for TELECOM Nancy Master's Degree}}}
 
@@ -106,7 +106,7 @@
     \begin{itemize}
     \setlength\itemsep{0.7em}
     \item \textbf{S}oftware \textbf{A}ssurance \textbf{M}etrics \textbf{A}nd \textbf{T}ool \textbf{E}valuation
-    \item Team of \alert{$\sim10$} software quality experts
+    \item Team of \alert{about 10} software quality experts
     \item A strong focus on software security
     \item \textbf{Define software metrics and design best practices for evaluating software and security tools}
     \end{itemize}
@@ -162,7 +162,7 @@
     \vfill
     \begin{definition}
       \vspace{0.3em}
-      A \textcolor{mLightGreen}{bug} is a design fault, a defect in a system that may or may not lead to its \textbf{unexpected behavior}.
+      A \textcolor{mLightGreen}{bug} is a defect in a system that may or may not lead to its \textbf{unexpected behavior}.
     \end{definition}
     \vfill
   \end{frame}
@@ -187,9 +187,9 @@
       \begin{column}{0.5\textwidth}
         But wait \ldots{} we already have:
         \begin{itemize}
-        \item firewalls,
-        \item antivirus software,
-        \item intrusion detection systems,
+        \item firewalls
+        \item antivirus software
+        \item intrusion detection systems
         \item and more!
         \end{itemize}
         \pause
@@ -248,14 +248,14 @@
   \subsection{Static Analysis Tool Exposition (SATE) Project}
 
   \begin{frame}{Static Analysis Tool Exposition (SATE)}
-    \textbf{Goal:} \alert{Evaluate the performances of static analyzers}\\
+    \textbf{Goal:} \alert{Evaluate the performance of static analyzers}\\
     \pause
     \vfill
     \textbf{Process:}
     \begin{enumerate}
     \item Provide tool makers with \textbf{test suites}
     \item Tool makers run their static analyzers and generate reports
-    \item SAMATE team analyze the reports
+    \item SAMATE team analyzes the reports
     \end{enumerate}
     \pause
     \vfill
@@ -264,14 +264,14 @@
       A \textcolor{mLightGreen}{test suite} is a set of \textbf{test cases}.\\
       \pause
       \vspace{0.3em}
-      A \textcolor{mLightGreen}{test case} is a program flawed with vulnerabilities.
+      A \textcolor{mLightGreen}{test case} is a program with bugs.
     \end{block}
   \end{frame}
 
   \begin{frame}{Desired Characteristics of Test Suites}
     \begin{figure}
       \centering
-      \includegraphics[scale=0.35]{figures/ideal-test-suites}
+      \includegraphics[scale=0.3]{figures/ideal-test-suites}
       \caption{Ideal Test Suites}
     \end{figure}
   \end{frame}
@@ -279,7 +279,7 @@
   \begin{frame}{SATE V Test Suites}
     \begin{figure}
       \centering
-      \includegraphics[scale=0.33]{figures/sate-v-test-suites}
+      \includegraphics[scale=0.3]{figures/sate-v-test-suites}
       \caption{SATE V Solution}
     \end{figure}
   \end{frame}
@@ -304,38 +304,38 @@
       \item \textbf{Statistical Significance} $\rightarrow$ We want a lot of bugs, hundreds of them!
       \end{itemize}
     \pause
-    \item A \textbf{large spectrum of vulnerability types}
+    \item A \textbf{large spectrum of bug types}
     \end{itemize}
   \end{frame}
 
   \begin{frame}{Project Challenges}
-    \begin{block}{Challenge n$^{\circ}$1:}
-      No such test case exist in the nature
+    \begin{block}{Challenge \#1:}
+      No such test case exists in nature
     \end{block}
     \pause
-    \begin{block}{Challenge n$^{\circ}$2:}
+    \begin{block}{Challenge \#2:}
       Developing test cases from scratch is not an option
     \end{block}
     \pause
     \vspace{1.5em}
     \centering
     \begin{LARGE}
-      What about modifying existing source code then?\\ And \alert{insert vulnerabilities} in it?!
+      What about modifying existing source code then?\\ And \alert{insert bugs} in it?!
     \end{LARGE}
   \end{frame}
 
   \begin{frame}{Project Challenges}
-    Injecting vulnerabilities into existing source code \ldots{} is that hard?\\
+    Injecting bugs into existing source code \ldots{} is that hard?\\
     \pause
     \begin{itemize}
     \setlength\itemsep{0.4em}
     \item Getting to know an existing project is \textbf{insanely time consuming}
     \pause
-    \item How would we \textbf{identify vulnerable source code locations} where to inject bugs?
+    \item How would we \textbf{identify vulnerable source code locations} to inject bugs?
     \pause
     \item Realism VS. Modifying the program's behavior
     \pause
-    \item Different vulnerability types, different processes?
+    \item Different bug types, different processes?
     \pause
     \item Ability to \textbf{trigger the bugs}?
     \end{itemize}
@@ -344,10 +344,10 @@
     $\rightarrow$ Challenging task and really {\LARGE\alert{time consuming}} task when done manually
   \end{frame}
   
-  \subsection{Opportunities with Automated Vulnerability Injection Techniques}
+  \subsection{Opportunities with Automated Bug Injection Techniques}
 
-  \begin{frame}{Automated Vulnerability Injection Techniques}
-    Some automated vulnerability injection techniques are starting to emerge:
+  \begin{frame}{Automated Bug Injection Techniques}
+    Some automated bug injection techniques are starting to emerge:
     \begin{itemize}
     \item Automating a \textbf{code mutation} process
     \item Injecting small snippets of flawed code (STONESOUP)
@@ -378,26 +378,26 @@
       \midrule
       Statistical Significance & \textcolor{custom-red}{\ding{55}} & \textcolor{custom-green}{\ding{51}} \\
       \midrule
-      Vulnerability Spectrum & \textcolor{custom-green}{\ding{51}} & \textcolor{custom-red}{\ding{55}} \\
+      Bug Spectrum & \textcolor{custom-green}{\ding{51}} & \textcolor{custom-red}{\ding{55}} \\
       \bottomrule
     \end{tabular}
-    \caption{Manual Vulnerability Injection VS. Automated Vulnerability Injection}
+    \caption{Manual Bug Injection VS. Automated Bug Injection}
     \end{table}
     \pause
     \textbf{Automating part of the process would get us the best of both worlds.}
   \end{frame}
   
-  \subsection{Project Planification}
+  \subsection{Project Plan}
   \begin{frame}{My Action Plan}
     \begin{enumerate}
       \setlength\itemsep{1em}
-      \item Vulnerability addition \textbf{state of the art}
+      \item Bug injection \textbf{state of the art}
       \pause
       \item \textbf{Get familiar} with the chosen technique
       \pause
       \item \textbf{Use it} on potential future test cases
       \pause
-      \item Fasten the process of \textbf{manual vulnerability addition}
+      \item Speed the process of \textbf{manual bug injection}
       \pause
       \item \textbf{Design a process} to produce test suites for SATE VI
     \end{enumerate}
@@ -405,7 +405,7 @@
   % End of section
 
   % Beginning of section
-  \section{A Focus on LAVA, a Large-scale and Automated Vulnerability Addition Software}
+  \section{A Focus on LAVA, a Large-scale and Automated Vulnerability Addition Tool}
 
   \begin{frame}{LAVA Software}
     \begin{columns}
@@ -420,10 +420,10 @@
       \begin{column}{0.75\textwidth}
         \begin{itemize}
         \setlength\itemsep{1em}
-        \item \textbf{L}arge-scale \textbf{A}utomated \textbf{V}ulnerability \textbf{A}ddition \textbf{S}oftware
+        \item \textbf{L}arge-scale \textbf{A}utomated \textbf{V}ulnerability \textbf{A}ddition tool
         \item Developed by the MIT Lincoln Laboratory and the University of New York
-        \item \textbf{Motivation:} Generate \alert{large ground-truth vulnerability corpora} to enable rigorous tool evaluation
-        \item \textbf{How?} Inject vulnerabilities into existing C programs by analyzing the \alert{control flow} and \alert{data flow}
+        \item \textbf{Motivation:} ``Generate \alert{large ground-truth vulnerability corpora} to enable rigorous tool evaluation''
+        \item \textbf{How?} Inject bugs into existing C programs by analyzing the \alert{control flow} and \alert{data flow}
         \end{itemize}
       \end{column}
     \end{columns}
@@ -486,13 +486,13 @@
         \multicolumn{1}{c}{\textcolor{custom-green}{Pros}} & \multicolumn{1}{c}{\textcolor{custom-red}{Cons}} \\
         \midrule
         \textcolor{custom-green}{\ding{51}} Inject a lot of bugs & \textcolor{custom-red}{\ding{55}} Works only for C Programs \\
-        \textcolor{custom-green}{\ding{51}} The most sophisticated so far & \textcolor{custom-red}{\ding{55}} Specific to buffer-overflows vulnerabilities \\
+        \textcolor{custom-green}{\ding{51}} The most sophisticated so far & \textcolor{custom-red}{\ding{55}} Addresses a single bug type \\
         \textcolor{custom-green}{\ding{51}} Very fast method & \textcolor{custom-red}{\ding{55}} Bugs not realistic enough \\
         \textcolor{custom-green}{\ding{51}} Hope to extend it & \textcolor{custom-red}{\ding{55}} Proof of concept more than a real product \\
         \textcolor{custom-green}{\ding{51}} Access to the DUAs and ATPs & \\
         \bottomrule
       \end{tabular}
-      \caption{Reasons To or Not To Use LAVA}
+      \caption{Advantages and Disadvantages of Using LAVA}
     \end{table}
   \end{frame}
   
@@ -522,12 +522,12 @@
     \item Improved the \textbf{LAVA configuration system}
     \item Submitted changes to the LAVA team:
       \begin{itemize}
-        \item Fixed \textbf{bugs}
-        \item Refactoring
-        \item Developed support for \textbf{function pointers}
+        \item \textbf{Fixed} bugs
+        \item \textbf{Refactored} duplicated source code into functions
+        \item \textbf{Implemented} new features
       \end{itemize}
       All were \textcolor{custom-green}{accepted}!
-    \item Designed an SQL request to \alert{use the LAVA database information}
+    \item Designed an SQL query to \alert{use the LAVA database information}
     \end{itemize}
   \end{frame}
 
@@ -546,13 +546,13 @@
   \begin{frame}{Project Results}
     \begin{enumerate}
       \setlength\itemsep{1em}
-      \item[\textcolor{custom-green}{\ding{51}}] Vulnerability addition state of the art
+      \item[\textcolor{custom-green}{\ding{51}}] Bug injection state of the art
       \pause
       \item[\textcolor{custom-green}{\ding{51}}] Get familiar with the chosen technique
       \pause
       \item[\textcolor{mLightBrown}{\ding{51}}] Use it on potential future test cases
       \pause
-      \item[\textcolor{custom-green}{\ding{51}}] Fasten the process of manual vulnerability addition
+      \item[\textcolor{custom-green}{\ding{51}}] Speed the process of manual bug injection
       \pause
       \item[\textcolor{custom-red}{\ding{55}}] Design a process to produce test suites
     \end{enumerate}
@@ -562,7 +562,7 @@
     On the short-term, for SATE VI:
     \begin{itemize}
     \item[\ding{43}] Run LAVA on other test cases
-    \item[\ding{43}] Insert bugs manually using LAVA
+    \item[\ding{43}] Insert bugs in a semi-automated way using LAVA
     \item[\ding{43}] JAVA test suite (STONESOUP?)
     \end{itemize}
     \pause
